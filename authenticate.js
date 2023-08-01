@@ -38,3 +38,16 @@ exports.jwtPassport = passport.use(
 );
 
 exports.verifyUser = passport.authenticate('jwt', {session: false});
+
+exports.verifyAdmin = (req, res, next) => {
+    // Check if the user is an admin
+    if (req.user.admin) {
+        // If the user is an admin, allow them to pass to the next middleware
+        return next();
+    } else {
+        // If the user is not an admin, create an error object and pass it to the error handling middleware
+        const err = new Error("You are not authorized to perform this operation!");
+        err.status = 403; // Forbidden status code
+        return next(err);
+    }
+};
