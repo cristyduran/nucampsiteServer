@@ -20,7 +20,7 @@ const connect = mongoose.connect(url, {
   useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true
-});
+})
 
 connect.then(() => console.log('Connected correctly to server'),
   err => console.log(err)
